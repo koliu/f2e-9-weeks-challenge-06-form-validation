@@ -1,6 +1,5 @@
 <template lang="pug">
   .wrap
-    div {{page}}
     .container
       .top
         ul.process-state
