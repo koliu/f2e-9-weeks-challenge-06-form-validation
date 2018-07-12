@@ -1,7 +1,7 @@
 <template lang="pug">
   div
     nav.menu
-      router-link(to="/index") Home
+      router-link(to="/") Home
       router-link(to="/spec") Spec
       router-link(to="/about") About
     div
