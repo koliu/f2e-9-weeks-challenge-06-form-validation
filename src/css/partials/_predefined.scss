@@ -41,23 +41,127 @@
 .bold {
   font-weight: $font-bold;
 }
-.title {
+.italic {
+  font-style: italic;
+}
+.ft-title {
   font-size: 48px;
   font-weight: $font-light;
 }
-.sub-title {
+.ft-sub-title {
   font-size: 24px;
   font-weight: $font-light;
 }
-.form {
+.ft-form {
   font-size: 20px;
   font-weight: $font-regular;
 }
-.label {
+.ft-label {
   font-size: 14px;
   font-weight: $font-regular;
 }
-.normal {
+.ft-normal {
   font-size: 14px;
   font-weight: $font-regular;
+}
+
+/* mixin */
+@mixin box($border: none, $radius: 0, $lineHeight: inherit, $height: inherit, $width: inherit, $bgColor: $color-white, $padding: inherit, $box-sizing: inherit) {
+  background-color: $bgColor;
+  border: $border;
+  border-radius: $radius;
+  box-sizing: $box-sizing;
+  height: $height;
+  line-height: $lineHeight;
+  padding: $padding;
+  width: $width;
+}
+@mixin flex-box($justify-content: flex-start, $align-items: flex-start, $direction: row, $wrap: nowrap) { //, $flex-shrink: 1, $flex-grow: 0, $flex-basis: auto) {
+  align-items: $align-items;
+  display: flex;
+  // flex-basis: $flex-basis;
+  flex-direction: $direction;
+  // flex-grow: $flex-grow;
+  // flex-shrink: $flex-shrink;
+  flex-wrap: $wrap;
+  justify-content: $justify-content;
+}
+
+/* global */
+.header {
+  @include flex-box(flex-start, center, column, wrap);
+  margin-top: 41px;
+
+  .title {
+    line-height: 57px;
+    text-align: center;
+  }
+
+  .sub-title {
+    line-height: 28px;
+    text-align: center;
+  }
+}
+
+.label {
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+
+.input {
+  box-sizing: border-box;
+  color: $color-gray;
+  @include box(
+    2px solid $color-black,
+    8px,
+    52px,
+    52px,
+    100%,
+    $color-white,
+    12px 20px,
+    box-sizing
+  );
+}
+.input-w140 {
+  box-sizing: border-box;
+  color: $color-gray;
+  @include box(
+    2px solid $color-black,
+    8px,
+    52px,
+    52px,
+    140px,
+    $color-white,
+    12px 20px,
+    box-sizing
+  );
+}
+.input-w220 {
+  box-sizing: border-box;
+  color: $color-gray;
+  @include box(
+    2px solid $color-black,
+    8px,
+    52px,
+    52px,
+    220px,
+    $color-white,
+    12px 20px,
+    box-sizing
+  );
+}
+.submit {
+  color: $color-white;
+  margin-top: 40px;
+  text-align: center;
+  @include box(
+    none,
+    8px,
+    52px,
+    52px,
+    100%,
+    $color-blue-lighter,
+    none,
+    box-sizing
+  );
 }

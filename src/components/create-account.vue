@@ -1,9 +1,22 @@
 <template lang="pug">
-  div create-account
+  .section
+    .header
+      .title.ft-title Create Account
+      .sub-title.ft-sub-title Glad to see you here!
+    .content.ft-form
+      .label Account
+      input(type="text", placeholder="example@email.com", required).input.ft-form
+      .label Password
+      input(type="password", placeholder="●●●●●●●●", required).input.ft-form
+      .label Comfirm Password
+      input(type="password", placeholder="●●●●●●●●", required).input.ft-form
+      .submit SUBMIT &amp; NEXT
+
 </template>
 <script>
-  
 </script>
 <style lang="scss" scoped>
+@import "../css/partials/variables";
+@import "../css/partials/predefined";
 
 </style>

@@ -26,11 +26,22 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "../css/partials/variables";
+@import "../css/partials/predefined";
+
 .wrap {
   height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 54px;
 }
-.contaier {
+.container {
+  border-top: 8px solid $color-blue;
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
   height: 100%;
+  width: 456px;
 
   .top {
     height: 100px;
