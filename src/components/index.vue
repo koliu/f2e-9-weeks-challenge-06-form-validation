@@ -3,8 +3,9 @@
     .container
       .progress-bar
         ul.progress-state
-          li(v-for="(item, index) in links")
-            router-link(:to="item.path", :key="index", :class="getLinkClasses(index)" v-if="index < links.length - 1")
+          template(v-for="(item, index) in links" v-if="index < links.length - 1")
+            li
+              router-link(:to="item.path", :key="index", :class="getLinkClasses(index)")
       .main
         router-view(@emit-update-and-go-next="updateAndGoNext")
 </template>
@@ -160,7 +161,7 @@ export default {
             position: absolute;
             top: calc(50% - 1px);
             right: 16px;
-            width: $progress-state-width / 5 - 2px;
+            width: $progress-state-width / 4 - 1px;
             z-index: -1;
           }
 
