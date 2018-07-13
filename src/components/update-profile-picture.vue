@@ -4,7 +4,7 @@
       .title.ft-title Update Profile Picture
       .sub-title.ft-sub-title We wanna know you more!
     .selector
-      input(type="file", accept="image/*", multiple)
+      input(type="file", name="photos", accept=".jpg, .png", multiple).photos
       .info
         .image.gray.fas.fa-images
         .desc.gray
@@ -12,7 +12,6 @@
           i.ft-normal MAX SIZE: 150*150px
     .chose
     .submit SUBMIT &amp; NEXT
-
 </template>
 <script>
 </script>
@@ -29,7 +28,7 @@
     margin-top: 24px;
     position: relative;
     width: 460px;
-    input[type="file"] {
+    .photos {
       border: 1px dotted red;
       cursor: pointer;
       height: 100%;

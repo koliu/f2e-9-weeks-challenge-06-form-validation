@@ -1,18 +1,10 @@
 <template lang="pug">
   .wrap
     .container
-      .top
+      .process-bar
         ul.process-state
-          li
-            router-link(to="/") create-account
-          li 
-            router-link(to="/general-info") general-info
-          li
-            router-link(to="/update-profile-picture") update-profile-picture
-          li
-            router-link(to="/payment-method") payment-method
-          li
-            router-link(to="/congratulations") congratulations
+          li(v-for="(item, index) in links")
+            router-link(:to="item.path", :key="index", :class="getLinkClasses(index)")
       .main
         router-view
 </template>
@@ -20,8 +12,55 @@
 export default {
   data: function() {
     return {
-      page: "index"
+      links: [
+        {
+          path: "/",
+          desc: "create-account",
+          done: true
+        },
+        {
+          path: "/general-info",
+          desc: "general-info",
+          done: false
+        },
+        {
+          path: "/update-profile-picture",
+          desc: "update-profile-picture",
+          done: false
+        },
+        {
+          path: "/payment-method",
+          desc: "payment-method",
+          done: true
+        },
+        {
+          path: "/congratulations",
+          desc: "congratulations",
+          done: false
+        }
+      ]
     };
+  },
+  methods: {
+    getLinkClasses(index) {
+      let item = this.links[index];
+
+      // .far.fa-circle
+      // .fas.fa-check-circle
+      // .far.fa-dot-circle
+      if (item.done) {
+        return "fas fa-check-circle active";
+      }
+
+      if (item.path === this.$router.currentRoute.path) {
+        return "far fa-dot-circle active";
+      }
+
+      return "far fa-circle";
+    }
+  },
+  watch: {
+    links() {}
   }
 };
 </script>
@@ -43,10 +82,53 @@ export default {
   height: 100%;
   width: 460px;
 
-  .top {
+  .process-bar {
     height: 100px;
+    position: relative;
+    @include flex-box(center, center);
+
+    $process-state-width: 240px;
     .process-state {
       height: 30px;
+      width: $process-state-width;
+      @include flex-box(space-between, center, row, nowrap);
+
+      li {
+        position: relative;
+
+        a,
+        a:active,
+        a:hover,
+        a:link,
+        a:visited {
+          color: $color-blue-lighter;
+        }
+
+        a {
+          text-decoration: none;
+          font-size: 16px;
+
+          &.active {
+            color: $color-blue;
+          }
+        }
+
+        &:not(:first-child) a {
+           &::after {
+            border-top: 2px solid $color-blue-lighter;
+            content: "";
+            position: absolute;
+            top: calc(50% - 1px);
+            right: 16px;
+            width: $process-state-width / 5 - 6px;
+            z-index: -1;
+          }
+
+          &.active::after {
+            border-color: $color-blue;
+          }
+        }
+      }
     }
   }
 }
