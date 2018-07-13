@@ -43,20 +43,23 @@ export default {
   },
   methods: {
     getLinkClasses(index) {
-      let item = this.links[index];
+      const item = this.links[index];
 
-      // .far.fa-circle
-      // .fas.fa-check-circle
-      // .far.fa-dot-circle
-      if (item.done) {
-        return "fas fa-check-circle active";
-      }
+      return item.done
+        ? "fas fa-check-circle active"
+        : item.path === this.$router.currentRoute.path
+          ? "far fa-dot-circle active"
+          : "far fa-circle";
 
-      if (item.path === this.$router.currentRoute.path) {
-        return "far fa-dot-circle active";
-      }
+      // if (item.done) {
+      //   return "fas fa-check-circle active";
+      // }
 
-      return "far fa-circle";
+      // if (item.path === this.$router.currentRoute.path) {
+      //   return "far fa-dot-circle active";
+      // }
+
+      // return "far fa-circle";
     }
   },
   watch: {
@@ -114,7 +117,7 @@ export default {
         }
 
         &:not(:first-child) a {
-           &::after {
+          &::after {
             border-top: 2px solid $color-blue-lighter;
             content: "";
             position: absolute;

@@ -7,11 +7,26 @@
       i.fas.fa-smile.blue-lighter
     .footer.italic.blue
       i Redirected to homepage after
-      i.sec 5
+      i.sec {{timeout}}
       i seconds…
 
 </template>
 <script>
+export default {
+  data() {
+    return {
+      timeout: 5
+    }
+  },
+  created() {
+    setInterval(() => {
+      this.timeout--;
+      if(this.timeout < 1) {
+        this.navigator.replaceTo("/");
+      }
+    }, 1000);
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import "../css/partials/variables";
