@@ -11,9 +11,16 @@
           i UPLOAD UP TO 3 PHOTOS
           i.ft-normal MAX SIZE: 150*150px
     .chose
-    .submit SUBMIT &amp; NEXT
+    .submit(@click="updateParentAndGoNext") SUBMIT &amp; NEXT
 </template>
 <script>
+export default {
+  methods: {
+    updateParentAndGoNext() {
+      this.$emit('emit-update-and-go-next', this.$route.path);
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import "../css/partials/variables";

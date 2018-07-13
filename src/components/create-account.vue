@@ -10,10 +10,17 @@
       input(type="password", placeholder="●●●●●●●●", required).input.ft-form
       .label Comfirm Password
       input(type="password", placeholder="●●●●●●●●", required).input.ft-form
-      .submit SUBMIT &amp; NEXT
+      .submit(@click="updateParentAndGoNext") SUBMIT &amp; NEXT
 
 </template>
 <script>
+export default {
+  methods: {
+    updateParentAndGoNext() {
+      this.$emit('emit-update-and-go-next', this.$route.path);
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import "../css/partials/variables";

@@ -4,9 +4,9 @@
       .process-bar
         ul.process-state
           li(v-for="(item, index) in links")
-            router-link(:to="item.path", :key="index", :class="getLinkClasses(index)")
+            router-link(:to="item.path", :key="index", :class="getLinkClasses(index)" v-if="index < links.length - 1")
       .main
-        router-view
+        router-view(@emit-update-and-go-next="updateAndGoNext")
 </template>
 <script>
 export default {
@@ -16,7 +16,7 @@ export default {
         {
           path: "/",
           desc: "create-account",
-          done: true
+          done: false
         },
         {
           path: "/general-info",
@@ -31,7 +31,7 @@ export default {
         {
           path: "/payment-method",
           desc: "payment-method",
-          done: true
+          done: false
         },
         {
           path: "/congratulations",
@@ -42,6 +42,18 @@ export default {
     };
   },
   methods: {
+    findIndexByPath(path) {
+      return this.links.findIndex((value, index, arr) => value.path === path);
+    },
+    updateAndGoNext(callerPath) {
+      const index = this.findIndexByPath(callerPath);
+      if (index < 0) {
+        throw new Error(`Cannot find path(${callerPath}) in links`);
+      }
+      this.links[index].done = true;
+
+      this.navigator.replaceTo(this.links[index + 1].path);
+    },
     getLinkClasses(index) {
       const item = this.links[index];
 
@@ -50,20 +62,46 @@ export default {
         : item.path === this.$router.currentRoute.path
           ? "far fa-dot-circle active"
           : "far fa-circle";
-
-      // if (item.done) {
-      //   return "fas fa-check-circle active";
+    },
+    goNextValidPage(preIndex) {
+      const next = this.links.find(
+        (value, index) => index > preIndex && !value.done
+      );
+      if (next) {
+        this.navigator.replaceTo(next.path);
+        return;
+      }
+      console.log(`Cannot find next valid page by preIndex=${preIndex}`);
+    },
+    goPreValidPage(nextIndex) {
+      // if (nextIndex === 0) {
+      //   return;
       // }
 
-      // if (item.path === this.$router.currentRoute.path) {
-      //   return "far fa-dot-circle active";
-      // }
+      for(let i = nextIndex - 1; i > -1; i--) {
+        const found = this.links[i];
+        if(found && !found.done) {
+          this.navigator.replaceTo(found.path);
+          return;
+        }
+      }
 
-      // return "far fa-circle";
     }
   },
   watch: {
-    links() {}
+    // Prevant change path by user
+    $route: function(route) {
+      const index = this.findIndexByPath(route.path);
+      if (index < 0) {
+        throw new Error(`Cannot find path(${route.path}) in links`);
+      }
+
+      if (this.links[index].done) {
+        this.goNextValidPage(index);
+        return;
+      }
+      this.goPreValidPage(index);
+    }
   }
 };
 </script>
@@ -122,7 +160,7 @@ export default {
             position: absolute;
             top: calc(50% - 1px);
             right: 16px;
-            width: $process-state-width / 5 - 6px;
+            width: $process-state-width / 5 - 2px;
             z-index: -1;
           }
 

@@ -45,3 +45,31 @@ const redirect = setInterval(() => {
   }
 }, 1000);
 ```
+
+### 設定 router-view 的 emit
+
+References:
+- [Pass data from parent view to child router view](https://forum.vuejs.org/t/pass-data-from-parent-view-to-child-router-view/27926): 提到了 router-view emit 的設法
+- [Creating a Global Event Bus with Vue.js](https://alligator.io/vuejs/global-event-bus/): 利用全域的事件匯流排
+- [Emitting events from vue-router](https://forum.vuejs.org/t/emitting-events-from-vue-router/10136): 此文中有提到透過 watch $route 控制樣式，而不用 $emit 的[範例](https://jsfiddle.net/nxrq5rhe/2/)
+- [Log In Passing props through router-link](https://forum.vuejs.org/t/passing-props-through-router-link-solved/16868): 這篇是提到如何在 router-link 傳遞參數到其他元件
+
+```pug
+<!-- parent -->
+router-view(@test-emit="testEmit")
+
+script
+  methods: {
+    testEmit(callerPath) {}
+  }
+
+<!-- child -->
+.submit(@click="callParent")
+
+script
+  methods: {
+    callParent() {
+      this.$emit('test-emit', ...);
+    }
+  }
+```

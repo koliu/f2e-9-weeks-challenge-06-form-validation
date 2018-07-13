@@ -26,10 +26,17 @@
           input(type="text", name="dist", required, placeholder="Dist").input-w220.ft-form
       .row
         input(type="text", name="address", required, placeholder="Address Detail").input.ft-form.addr-detail
-      .submit SUBMIT &amp; NEXT
+      .submit(@click="updateParentAndGoNext") SUBMIT &amp; NEXT
 
 </template>
 <script>
+export default {
+  methods: {
+    updateParentAndGoNext() {
+      this.$emit('emit-update-and-go-next', this.$route.path);
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import "../css/partials/variables";

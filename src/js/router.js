@@ -16,7 +16,8 @@ export default {
       children: [{
         name: 'CreateAccount',
         path: '', // default sub page
-        component: CreateAccount
+        component: CreateAccount,
+        props: true
       }, {
         name: 'GeneralInfo',
         path: 'general-info',

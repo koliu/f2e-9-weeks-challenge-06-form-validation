@@ -24,10 +24,17 @@
           .inline
             input(type="number", name="month", min="1", max="12", placeholder="MM").input-w140.ft-form.mr-18
             input(type="number", name="day", min="1", max="31", placeholder="DD").input-w140.ft-form
-      .submit DONE
+      .submit(@click="updateParentAndGoNext") DONE
 
 </template>
 <script>
+export default {
+  methods: {
+    updateParentAndGoNext() {
+      this.$emit("emit-update-and-go-next", this.$route.path);
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @import "../css/partials/variables";

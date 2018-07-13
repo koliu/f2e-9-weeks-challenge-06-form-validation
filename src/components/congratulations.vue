@@ -22,7 +22,7 @@ export default {
     const redirect = setInterval(() => {
       this.timeout--;
       if(this.timeout < 1) {
-        this.navigator.pushTo("/main");
+        this.navigator.pushTo("/about");
         clearInterval(redirect);
       }
     }, 1000);
