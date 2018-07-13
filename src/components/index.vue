@@ -41,7 +41,7 @@ export default {
   flex-flow: column wrap;
   align-content: center;
   height: 100%;
-  width: 456px;
+  width: 460px;
 
   .top {
     height: 100px;

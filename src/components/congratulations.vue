@@ -7,7 +7,7 @@
       i.fas.fa-smile.blue-lighter
     .footer.italic.blue
       i Redirected to homepage after
-      i 5
+      i.sec 5
       i seconds…
 
 </template>
@@ -29,7 +29,11 @@
   }
   .footer {
     @include flex-box(center, center);
+
+    .sec {
+      display: inline-block;
+      margin: 0 8px;
+    }
   }
 }
-
 </style>
