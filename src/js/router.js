@@ -42,6 +42,12 @@ export default {
     {
       path: "/about",
       component: About
+    },
+    {
+      path: "*",
+      alias: "/404",
+      component: () =>
+        import ('../components/404.vue'),
     }
   ]
 };

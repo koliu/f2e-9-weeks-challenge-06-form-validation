@@ -19,7 +19,6 @@
           li css animation/transition
           li scss
           li pug
-  </div>
 </template>
 
 <script>

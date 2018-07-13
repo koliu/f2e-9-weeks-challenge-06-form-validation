@@ -19,10 +19,11 @@ export default {
     }
   },
   created() {
-    setInterval(() => {
+    const redirect = setInterval(() => {
       this.timeout--;
       if(this.timeout < 1) {
-        this.navigator.replaceTo("/");
+        this.navigator.pushTo("/main");
+        clearInterval(redirect);
       }
     }, 1000);
   }

@@ -32,3 +32,16 @@ References:
 - []()
 
 排版方面，可利用 opacity: 0 來隱藏檔案選取的按鈕。
+
+### 使用 setInterval 時記得要清除
+
+```js
+const redirect = setInterval(() => {
+  this.timeout--;
+  if(this.timeout < 1) {
+    this.navigator.pushTo("/404");
+    // 少了這行導向後任何網址都會再自動導向到 /404
+    clearInterval(redirect);
+  }
+}, 1000);
+```
