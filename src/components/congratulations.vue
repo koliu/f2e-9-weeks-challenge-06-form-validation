@@ -30,8 +30,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../css/partials/variables";
-@import "../css/partials/predefined";
+@import "../css/pages";
 
 .section {
   .content {

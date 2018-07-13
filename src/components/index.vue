@@ -7,7 +7,8 @@
             li
               router-link(:to="item.path", :key="index", :class="getLinkClasses(index)")
       .main
-        router-view(@emit-update-and-go-next="updateAndGoNext")
+        transition(name="fade" mode="out-in" appear)
+          router-view(@emit-update-and-go-next="updateAndGoNext")
 </template>
 <script>
 export default {
