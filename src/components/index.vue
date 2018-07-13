@@ -1,8 +1,8 @@
 <template lang="pug">
   .wrap
     .container
-      .process-bar
-        ul.process-state
+      .progress-bar
+        ul.progress-state
           li(v-for="(item, index) in links")
             router-link(:to="item.path", :key="index", :class="getLinkClasses(index)" v-if="index < links.length - 1")
       .main
@@ -122,15 +122,15 @@ export default {
   height: 100%;
   width: 460px;
 
-  .process-bar {
+  .progress-bar {
     height: 100px;
     position: relative;
     @include flex-box(center, center);
 
-    $process-state-width: 240px;
-    .process-state {
+    $progress-state-width: 240px;
+    .progress-state {
       height: 30px;
-      width: $process-state-width;
+      width: $progress-state-width;
       @include flex-box(space-between, center, row, nowrap);
 
       li {
@@ -160,7 +160,7 @@ export default {
             position: absolute;
             top: calc(50% - 1px);
             right: 16px;
-            width: $process-state-width / 5 - 2px;
+            width: $progress-state-width / 5 - 2px;
             z-index: -1;
           }
 
