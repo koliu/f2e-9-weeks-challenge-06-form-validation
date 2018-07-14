@@ -8,14 +8,17 @@
       .label Account
       input(type="text", id="email", v-model="email", @focus="focusElement='email'", @blur="focusElement=''", placeholder="example@email.com", :class="{'focus' : focusElement === 'email', 'warn' : email !== '' && !validEmail}").input.ft-form
       label(for="email", :class="{'warn' : email !== '' && !validEmail}").email.warn-right.ft-label
+        label(for="email", v-if="email !== '' && !validEmail").warn-sign.fas.fa-exclamation-triangle
       
       .label Password
       input(type="password", v-model="password", @focus="focusElement='password'", @blur="focusElement=''", placeholder="●●●●●●●●", :class="{'focus' : focusElement === 'password', 'warn' : password !== '' && !validPassword}").input.ft-form
       label(for="password", :class="{'warn' : password !== '' && !validPassword}").password.ft-label
+        label(for="password", v-if="password !== '' && !validPassword").warn-sign.fas.fa-exclamation-triangle
       
       .label Comfirm Password
       input(type="password", v-model="passwordConfirm", @focus="focusElement='passwordConfirm'", @blur="focusElement=''", placeholder="●●●●●●●●", :class="{'focus' : focusElement === 'passwordConfirm', 'warn' : passwordConfirm !== '' && !validPasswordConfirm}").input.ft-form
       label(for="passwordConfirm", :class="{'warn' : passwordConfirm !== '' && !validPasswordConfirm}").passwordConfirm.ft-label
+        label(for="passwordConfirm", v-if="passwordConfirm !== '' && !validPasswordConfirm").warn-sign.fas.fa-exclamation-triangle
 
       .submit(@click.stop="submitHandler" :disabled="!success" :class="{'active':success}") SUBMIT &amp; NEXT
 
