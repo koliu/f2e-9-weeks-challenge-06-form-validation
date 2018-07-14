@@ -76,10 +76,6 @@ export default {
       console.log(`Cannot find next valid page by preIndex=${preIndex}`);
     },
     goPreValidPage(nextIndex) {
-      // if (nextIndex === 0) {
-      //   return;
-      // }
-
       for(let i = nextIndex - 1; i > -1; i--) {
         const found = this.links[i];
         if(found && !found.done) {
@@ -87,8 +83,7 @@ export default {
           return;
         }
       }
-
-    }
+    }    
   },
   watch: {
     // Prevant change path by user

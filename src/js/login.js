@@ -1,4 +1,4 @@
-import SessionStorage from "../js/session-storage";
+import SessionStorage from "../js/utils/session-storage";
 SessionStorage.log = true;
 
 const KEY = "login";
