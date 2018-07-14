@@ -156,3 +156,63 @@ package.json
   "start": "babel-node server.js"
 }
 ```
+
+Setup backend dependencies:
+
+```sh
+# body-parser: http post method for express
+npm i -D body-parser express-fileupload image-size
+```
+
+```js
+// server.js
+
+import BodyParser from 'body-parser';
+import FileUpload from 'express-fileupload';
+import ImageSize from 'image-size';
+
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.post('/submit/create-account', (req, res) => {
+  console.log(req);
+  res.send('OK');
+})
+```
+
+Setup allow CORS
+
+- [CORS on ExpressJS](https://enable-cors.org/server_expressjs.html)
+
+```js
+// server.js
+server.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
+```
+
+Setup Content-Type for axios
+
+> 因為 axios, ajax 預設 Content-Type 是採用 text/plain，Server 將不知如何解析，
+
+
+- 設定全域：[axios 使用post方式傳遞參數，後端接受不到](https://segmentfault.com/a/1190000012635783)
+
+```js
+// main.js
+Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+```
+
+- 個別指定: [Passing headers with axios POST request](https://stackoverflow.com/questions/44617825/passing-headers-with-axios-post-request-reactjs)
+
+```js
+const headers = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+axios.post("http://localhost:38080/submit/create-account", data, headers);
+```
+
+References:
+
+- [axios全攻略](https://ykloveyxk.github.io/2017/02/25/axios%E5%85%A8%E6%94%BB%E7%95%A5/)

@@ -1,6 +1,6 @@
 import resetCSS from "../css/reset.css";
 import style from "../css/main.scss";
-import axios from "./axios.min.js";
+import Axios from "./axios.min.js";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import routerConfig from "./router";
@@ -15,6 +15,7 @@ import Login from "./login";
 
 Vue.use(VueRouter);
 const router = new VueRouter(routerConfig);
+Axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 // Global tool
 Vue.mixin({
@@ -22,7 +23,7 @@ Vue.mixin({
     return {
       navigator: Navigator,
       loginManager: Login,
-      http: axios
+      http: Axios
     };
   },
   created() {
