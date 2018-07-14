@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900");
 @import "./partials/variables";
+@import "./partials/transition";
 @import "./partials/predefined";
+
+* {
+  outline: none;
+}
 
 .header {
   @include flex-box(flex-start, center, column, wrap);
@@ -22,9 +27,21 @@
   margin-top: 24px;
 }
 
+input {
+  &.warn {
+    border: 2px solid $color-yellow;
+  }
+  //必須放在 warn 之後，才會在有 warn 時有 focus 效果
+  &.focus {
+    transition: border 0.2s ease-in;
+    border: 2px solid $color-blue;
+  }
+}
+
 .input {
   box-sizing: border-box;
   color: $color-gray;
+
   @include box(
     2px solid $color-black,
     8px,
@@ -65,9 +82,12 @@
   );
 }
 .submit {
+  box-sizing: border-box;
   color: $color-white;
   margin-top: 40px;
   text-align: center;
+  transition: background-color 0.5s ease-in;
+
   @include box(
     none,
     8px,
@@ -78,4 +98,13 @@
     none,
     box-sizing
   );
+  
+  &.active {
+    background-color: $color-blue;
+    cursor: pointer;
+
+    &:active {
+      border: 2px solid $color-blue-lighter;
+    }
+  }
 }

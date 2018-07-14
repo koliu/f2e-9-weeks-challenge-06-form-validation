@@ -88,3 +88,59 @@
   flex-wrap: $wrap;
   justify-content: $justify-content;
 }
+
+// 使用方式：
+// label(class="warn")
+// label 必須使用 position: relative
+// $position:
+//    right: 顯示在右邊，其 label 必須放在 target 之後
+//    left: 顯示在左邊，其 label 必須放在 target 之前
+@mixin warn-tool-tip($position, $message) {
+  @if $position == "right" {
+    &::before {
+      content: "";
+      border: 6px solid transparent;
+      border-right-color: $color-yellow;
+      position: absolute;
+      right: -15px;
+      top: 0px;
+      width: 4px;
+      z-index: 222;
+    }
+    &::after {
+      background-color: $color-yellow;
+      border-radius: 4px;
+      color: $color-white;
+      content: $message;
+      left: 14px;
+      padding: 6px 8px;
+      position: absolute;
+      white-space: nowrap;
+      top: -10px;
+      z-index: 2;
+    }
+  } @else if $position == "left" {
+    &::after {
+      content: "";
+      border: 6px solid transparent;
+      border-left-color: $color-yellow;
+      position: absolute;
+      right: -1px;
+      top: 0px;
+      width: 4px;
+      z-index: 222;
+    }
+    &::before {
+      background-color: $color-yellow;
+      border-radius: 4px;
+      color: $color-white;
+      content: $message;
+      padding: 6px 8px;
+      position: absolute;
+      right: 14px;
+      white-space: nowrap;
+      top: -10px;
+      z-index: 2;
+    }
+  }
+}

@@ -216,3 +216,13 @@ axios.post("http://localhost:38080/submit/create-account", data, headers);
 References:
 
 - [axios全攻略](https://ykloveyxk.github.io/2017/02/25/axios%E5%85%A8%E6%94%BB%E7%95%A5/)
+
+---
+
+### [remove chrome's input highlighting](https://stackoverflow.com/questions/2943548/how-to-reset-remove-chromes-input-highlighting-focus-border)
+
+```css
+.element {
+  outline: none;
+}
+```
