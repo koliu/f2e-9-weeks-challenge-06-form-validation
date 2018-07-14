@@ -121,3 +121,38 @@ References:
 
 - [vue-$watch的使用](https://my.oschina.net/zhangdq/blog/1610647)
 - [How to watch only one object in an array?](https://stackoverflow.com/questions/43750569/how-to-watch-only-one-object-in-an-array)
+
+### Express
+
+```sh
+npm i -D express
+```
+
+For ES6+: [example-node-server](https://github.com/babel/example-node-server)
+
+```sh
+npm i -D babel-cli
+```
+
+Setup express server:
+
+```js
+// server.js
+import Express from 'express';
+
+const server = Express();
+const rootPath = './dist';
+const port = 38080;
+server.use(Express.static(rootPath));
+server.listen(port);
+
+console.log(`Server running at http://127.0.0.1:${port}`);
+```
+
+package.json
+
+```json
+"scripts": {
+  "start": "babel-node server.js"
+}
+```

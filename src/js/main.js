@@ -1,6 +1,6 @@
 import resetCSS from "../css/reset.css";
 import style from "../css/main.scss";
-// import axios from "./axios.min.js";
+import axios from "./axios.min.js";
 import Vue from "vue";
 import VueRouter from "vue-router";
 import routerConfig from "./router";
@@ -21,7 +21,8 @@ Vue.mixin({
   data() {
     return {
       navigator: Navigator,
-      loginManager: Login
+      loginManager: Login,
+      http: axios
     };
   },
   created() {
