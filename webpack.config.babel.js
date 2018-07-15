@@ -49,6 +49,11 @@ export default (module = {
         exclude: /node_modules/,
         loader: StringReplacePlugin.replace({
           replacements: [{
+            pattern: /\"\/src\//g,
+            replacement: function (match, p1, offset, string) {
+              return '"';
+            }
+          }, {
             pattern: /\.\.\/src\//g,
             replacement: function (match, p1, offset, string) {
               return '../dist/';

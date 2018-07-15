@@ -98,7 +98,7 @@ export default {
   },
   mounted() {
     this.http
-      .get(`src/data/city.json`)
+      .get(`/src/static/data/city.json`)
       .then(res => {
         this.cityData = res.data;
       })
