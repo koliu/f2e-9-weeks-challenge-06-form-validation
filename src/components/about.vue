@@ -6,19 +6,28 @@
         br
         i 一個 fullstack 導向的攻城獅
         br
-        i 這裡是攻打 F2E 的第 5 座城堡 -- Comic Viewer
+        i 這裡是攻打 F2E 的第 6 座城堡 -- Form Validation
         br
-        i 目前已攻下： 
+        i 目前已攻下： create-account, general-info, congratulations
         br
-        i 待進攻： 
+        i 待進攻： 檔案上傳前後端、payment-method
         br
         i 採用的武器有
         br
         ul
-          li css flex
+          li vue
+          li vue-cli
           li css animation/transition
           li scss
           li pug
+      .about-item
+        i 這次主要是練習 vue 及 vue-router 的使用
+        br
+        i 將 input 及 warn 抽成共用的 vue component
+        br
+        i 並利用 props 及 emit 來父子元件互傳資料
+        br
+        i 以及能鎖定在未完成的 route 上
 </template>
 
 <script>
