@@ -27,16 +27,12 @@
   margin-top: 24px;
 }
 
-label {
-  &.warn-sign {
-    color: $color-yellow;
-    content: "";
-    font-size: 24px;
-    position: absolute;
-    left: -48px;
-    top: -6px;
-    z-index: 2;
-  }
+.w-220 {
+  width: 220px;
+}
+
+.w-140 {
+  width: 140px;
 }
 
 input {
@@ -45,12 +41,13 @@ input {
   }
   //必須放在 warn 之後，才會在有 warn 時有 focus 效果
   &.focus {
-    transition: border 0.2s ease-in;
+    transition: border 0.25s ease-in;
     border: 2px solid $color-blue;
   }
 }
 
-.input {
+.input,
+.select {
   box-sizing: border-box;
   color: $color-gray;
 
@@ -65,7 +62,8 @@ input {
     box-sizing
   );
 }
-.input-w140 {
+.input-w140,
+.select-w140 {
   box-sizing: border-box;
   color: $color-gray;
   @include box(
@@ -79,7 +77,8 @@ input {
     box-sizing
   );
 }
-.input-w220 {
+.input-w220,
+.select-w220 {
   box-sizing: border-box;
   color: $color-gray;
   @include box(

@@ -3,37 +3,36 @@
     .header
       .title.ft-title Create Account
       .sub-title.ft-sub-title Glad to see you here!
-    //- form(action="/submit/create-account" method="POST" enctype="application/x-www-form-urlencoded")
     .content.ft-form
       .label Account
-      input(type="text", id="email", v-model="email", @focus="focusElement='email'", @blur="focusElement=''", placeholder="example@email.com", :class="{'focus' : focusElement === 'email', 'warn' : email !== '' && !validEmail}").input.ft-form
-      label(for="email", :class="{'warn' : email !== '' && !validEmail}").email.warn-right.ft-label
-        label(for="email", v-if="email !== '' && !validEmail").warn-sign.fas.fa-exclamation-triangle
+      my-input(propId="email", :propValue="email", propType="text", :propValid="validEmail", propPlaceholder="example@email.com", propWarnMessage="INVALID EMAIL", propWarnDirection="right", @propUpdateData="updateData")
       
       .label Password
-      input(type="password", v-model="password", @focus="focusElement='password'", @blur="focusElement=''", placeholder="●●●●●●●●", :class="{'focus' : focusElement === 'password', 'warn' : password !== '' && !validPassword}").input.ft-form
-      label(for="password", :class="{'warn' : password !== '' && !validPassword}").password.ft-label
-        label(for="password", v-if="password !== '' && !validPassword").warn-sign.fas.fa-exclamation-triangle
-      
+      my-input(propId="password", :propValue="password", propType="password", :propValid="validPassword", propWarnMessage="MINIMUM 8 CHARACTERS", propWarnDirection="right", propWarnSignClasses="fas fa-exclamation-triangle", @propUpdateData="updateData")
+
       .label Comfirm Password
-      input(type="password", v-model="passwordConfirm", @focus="focusElement='passwordConfirm'", @blur="focusElement=''", placeholder="●●●●●●●●", :class="{'focus' : focusElement === 'passwordConfirm', 'warn' : passwordConfirm !== '' && !validPasswordConfirm}").input.ft-form
-      label(for="passwordConfirm", :class="{'warn' : passwordConfirm !== '' && !validPasswordConfirm}").passwordConfirm.ft-label
-        label(for="passwordConfirm", v-if="passwordConfirm !== '' && !validPasswordConfirm").warn-sign.fas.fa-exclamation-triangle
+      my-input(propId="passwordConfirm", :propValue="passwordConfirm", propType="password", :propValid="validPasswordConfirm", propWarnMessage="NOT MATCH", propWarnDirection="right", propWarnSignClasses="fas fa-exclamation-triangle", @propUpdateData="updateData")
 
       .submit(@click.stop="submitHandler" :disabled="!success" :class="{'active':success}") SUBMIT &amp; NEXT
 
 </template>
 <script>
 export default {
+  components: {
+    'my-input': () => import("./form-component/input.vue")
+  },
   data() {
     return {
-      focusElement: "",
       email: "",
       password: "",
       passwordConfirm: ""
     };
   },
   methods: {
+    updateData(target, value) {
+      console.log('updateData', target, value);
+      this[target] = value;
+    },
     submitHandler() {
       console.log("submit", this.email, this.password, this.passwordConfirm);
       if (!this.success) {
@@ -77,20 +76,4 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../css/pages";
-
-label {
-  position: relative;
-
-  &.email.warn {
-    @include warn-tool-tip(right, "INVALID EMAIL");
-  }
-
-  &.password.warn {
-    @include warn-tool-tip(right, "MINIMUM 8 CHARACTERS");
-  }
-
-  &.passwordConfirm.warn {
-    @include warn-tool-tip(right, "NOT MATCH");
-  }
-}
 </style>

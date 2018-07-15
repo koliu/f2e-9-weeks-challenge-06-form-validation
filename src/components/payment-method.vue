@@ -24,14 +24,26 @@
           .inline
             input(type="number", name="month", min="1", max="12", placeholder="MM").input-w140.ft-form.mr-18
             input(type="number", name="day", min="1", max="31", placeholder="DD").input-w140.ft-form
-      .submit(@click="updateParentAndGoNext") DONE
+
+      .submit(@click.stop="submitHandler" :disabled="!success" :class="{'active':success}") SUBMIT &amp; DONE
 
 </template>
 <script>
 export default {
-  methods: {
+   methods: {
+    submitHandler() {
+      if (!this.success) {
+        return;
+      }
+      this.updateParentAndGoNext();
+    },
     updateParentAndGoNext() {
       this.$emit("emit-update-and-go-next", this.$route.path);
+    }
+  },
+  computed: {
+    success() {
+      return true;
     }
   }
 }

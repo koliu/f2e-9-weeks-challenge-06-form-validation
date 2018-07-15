@@ -11,13 +11,24 @@
           i UPLOAD UP TO 3 PHOTOS
           i.ft-normal MAX SIZE: 150*150px
     .chose
-    .submit(@click="updateParentAndGoNext") SUBMIT &amp; NEXT
+    .submit(@click.stop="submitHandler" :disabled="!success" :class="{'active':success}") SUBMIT &amp; NEXT
 </template>
 <script>
 export default {
   methods: {
+    submitHandler() {
+      if (!this.success) {
+        return;
+      }
+      this.updateParentAndGoNext();
+    },
     updateParentAndGoNext() {
-      this.$emit('emit-update-and-go-next', this.$route.path);
+      this.$emit("emit-update-and-go-next", this.$route.path);
+    }
+  },
+  computed: {
+    success() {
+      return true;
     }
   }
 }
