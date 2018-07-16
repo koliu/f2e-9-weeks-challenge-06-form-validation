@@ -1,5 +1,16 @@
 # No.6 Validation
 
+這次主要是目的是熟悉 Vue Component 的運用，
+嘗試抽成共用 component，並利用 props 及 $emit 來達到資料傳遞、方法引用。
+雖然功能上其實不需利用網址切換，但為了練習 vue-router，
+所以表單頁面實作上是有網址切換，並有做到防止手動跳步。
+
+測試用資料：
+Visa  4556681494346585
+Mastercard 5575779335091008
+Discover 6011138621248741
+American Express 376925441561077
+
 ---
 
 ## [DEMO](dist/)
@@ -226,3 +237,75 @@ References:
   outline: none;
 }
 ```
+
+---
+
+## Good sample from other challenger
+
+[inwolf/the-f2e-w6](https://github.com/inwolf/the-f2e-w6/blob/master/src/components/FormCreate.vue)
+
+- [Demo](https://inwolf.github.io/the-f2e-w6/)
+- 特色：
+  - 使用 [vee-validate](https://baianat.github.io/vee-validate/) 來實現表單驗證
+  - 可以在個別欄位顯示錯誤，也可以在送出時顯示所有不符欄位的訊息
+
+[kanboo/vue_FormValidation](https://github.com/kanboo/vue_FormValidation)
+
+- [Demo](https://kanboo.github.io/vue_FormValidation/dist/#/)
+- 特色：
+  - 專案架構值得參考
+    - 採用將 .vue 拆為 vue, scss, html 的方式
+  - 有實作[檔案上傳預覽及驗證](https://github.com/kanboo/vue_FormValidation/blob/master/src/components/FormUpdateProfilePicture/index.vue)
+  - 採用元件
+    - 使用 vuex 來作狀態管理
+      - mapState
+      - mapMutations
+    - VueAxios
+    - vee-validate
+
+[genepan2641/thef2e-006-validator](https://github.com/genepan2641/thef2e-006-validator/)
+
+- [Demo](https://genepan2641.github.io/thef2e-006-validator/)
+- 特色：
+  - 有實作出所有頁面
+  - 採用[單一網址切換元件](https://github.com/genepan2641/thef2e-006-validator/blob/master/src/App.vue)
+  - 使用[vee-validate](https://github.com/genepan2641/thef2e-006-validator/blob/master/src/main.js)
+  - 檔案上傳採用[_URL.createObjectURL](https://github.com/genepan2641/thef2e-006-validator/blob/master/src/components/StepThree.vue)
+
+[goodahoq/w6-validation](https://github.com/goodahoq/w6-validation/blob/master/src/components/step4.vue)
+
+- 特色：
+  - 日期選擇套用element-ui
+    - [Demo](https://goodahoq.github.io/w6-validation/#/step4)
+    - [SourceCode](https://github.com/goodahoq/w6-validation/blob/master/src/components/step4.vue)
+
+
+[runkids/F2E-Validation](https://github.com/runkids/F2E-Validation)
+
+- [Demo](https://runkids.github.io/f2e/week6/#/)
+- 特色：
+  - 並無按照規格書走，但實作出 firebase 版的帳號申請及權限驗證功能
+
+[EasonChang0115/week6-validation](https://github.com/EasonChang0115/week6-validation)
+
+- [Demo](https://easonchang0115.github.io/week6-demo)
+- 特色：
+  - 有實作所有頁面
+  - 採用 vuex
+  - progress-bar 有 transition
+  - online [CV](https://easonchang0115.github.io/resume/) 值得參考 
+
+[miausf2e](https://gitlab.com/MiausF2E/f2e-validation)
+
+- [Demo](https://miausf2e.gitlab.io/f2e-validation/)
+- 特色：
+  - 有實作所有頁面
+  - [採用元件](https://gitlab.com/MiausF2E/f2e-validation/blob/master/src/main.js)
+    - vee-validate
+    - vue-mq
+  - [圖片上傳預覽](https://gitlab.com/MiausF2E/f2e-validation/blob/master/src/views/ProfilePicture.vue)
+
+[fchsu/No6.Validation](https://github.com/fchsu/No6.Validation)
+
+- [Demo](https://fchsu.github.io/No6.Validation/dist/index.html)
+- 有實作所有頁面
